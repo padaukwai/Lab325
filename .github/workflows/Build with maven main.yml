@@ -13,11 +13,16 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Setup network
+        run: |
+          docker network create --driver bridge wmlab2r3
+          docker pull mongo
+          docker run -d --name mongo-dbserver --network wmlab2r3 mongo
       - name: Build with Maven
         run: mvn package
-      - name: Build Docker Image
-        run: docker build -t semimage .
+      - name: Build
+        run: docker build -t wmlab2r3 .
       - name: Run image
-        run: docker run --name semcontainer -d semimage
+        run: docker run --network wmlab2r3 --name semcontainer wmlab2r3
       - name: view logs
         run: docker logs semcontainer
