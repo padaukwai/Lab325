@@ -4,7 +4,7 @@ FROM mysql:8.0
 WORKDIR /tmp
 # Copy all the files to the working directory of the container
 COPY /db/test_db/*.sql /tmp/
-COPY /db//test_db/*.dump /tmp/
+COPY /db/test_db/*.dump /tmp/
 # Copy the main SQL file to docker-entrypoint-initdb.d.
 # Scripts and SQL files in this folder are executed on container startup.
 # This is specific to MySQL.
