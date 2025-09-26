@@ -6,9 +6,10 @@ WORKDIR /tmp
 #COPY test_db/*.sql /tmp/
 #COPY test_db/*.dump /tmp/
 #FROM mysql:8.0.43
+
 RUN microdnf install -y git \
     && git clone https://github.com/datacharmer/test_db.git /docker-entrypoint-initdb.d/test_db \
-    && cp /docker-entrypoint-initdb.d/test_db/* /docker-entrypoint-initdb.d/ \
+    && cp /docker-entrypoint-initdb.d/test_db/*.* /docker-entrypoint-initdb.d/\
     && rm -rf /var/cache/dnf
 # Copy the main SQL file to docker-entrypoint-initdb.d.
 # Scripts and SQL files in this folder are executed on container startup.
@@ -16,3 +17,4 @@ RUN microdnf install -y git \
 #COPY test_db/employees.sql /docker-entrypoint-initdb.d
 # Set the root password
 ENV MYSQL_ROOT_PASSWORD example
+
