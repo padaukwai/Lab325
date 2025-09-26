@@ -1,12 +1,41 @@
 #version: '3'
-services:
+#services:
   # Application Dockerfile is in same folder which is .
+ # app:
+  #  build: .
+
+services:
   app:
     build: .
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: example
+      DB_NAME: employees
+    ports:
+      - "8080:8080"   # adjust if your app exposes another port
 
-  # db is is db folder
   db:
-    build: db/.
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0.43
+    container_name: mysql
     restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: employees   # optional: creates DB automatically
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/test_db:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+  # db is is db folder
+  #db:
+   # build: db/.
+    #command: --default-authentication-plugin=mysql_native_password
+    #restart: always
 
