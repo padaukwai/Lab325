@@ -1,5 +1,5 @@
 # Use the latest MySQL image
-FROM mysql: 8.0
+FROM mysql: 8.0.32
 # Set the working directory
 WORKDIR /tmp
 # Copy all the files to the working directory of the container
