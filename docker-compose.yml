@@ -7,6 +7,10 @@
 services:
   app:
     build: .
+    image: my-mysql-image
+    volumes:
+      - ./employees.sql:/docker-entrypoint-initdb.d/employees.sql
+      - ./load_departments.dump:/docker-entrypoint-initdb.d/load_departments.dump
     #depends_on:
    #   - db
     #environment:
