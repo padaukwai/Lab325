@@ -18,6 +18,7 @@ services:
       - "8080:8080"   # adjust if your app exposes another port
 
   db:
+    build: db/.
     image: mysql:8.0
     container_name: mysql
     restart: always
