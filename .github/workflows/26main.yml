@@ -16,7 +16,7 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
       - name: Download external test_db
-        run: git clone --depth 1 https://github.com/datacharmer/test_db.git db/test_db
+        run: git clone --depth 1 https://github.com/datacharmer/test_db.git db/test_db1
 
       - name: Build Docker image
         run: docker build -t my-mysql-image .
