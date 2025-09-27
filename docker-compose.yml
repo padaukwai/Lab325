@@ -9,13 +9,13 @@ services:
     build: .
     depends_on:
       - db
-    environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: example
-      DB_NAME: employees
-    ports:
-      - "8080:8080"   # adjust if your app exposes another port
+    #environment:
+    #  DB_HOST: db
+     # DB_USER: root
+    #  DB_PASSWORD: example
+    #  DB_NAME: employees
+  #  ports:
+  #    - "8080:8080"   # adjust if your app exposes another port
 
   db:
     build: db/.
