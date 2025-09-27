@@ -15,7 +15,11 @@ jobs:
         with:
           java-version: '19'
           distribution: 'adopt'
+    
+      - name: Build Docker image
+        run: docker build -t my-mysql-image .
       - name: Build with Maven
         run: mvn package
       - name: Run docker compose
-        run: docker-compose up --abort-on-container-exit
+        run: docker compose up --abort-on-container-exit
+     
